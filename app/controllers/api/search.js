@@ -19,8 +19,11 @@ exports.index = function(req, res, next) {
   };
 
   exec(casperjsCmd, function(error, stdout, stderr) {
-    if (error) next(error);
-    sys.puts(stdout);
-    res.send(200, js2xmlparser("person", data));
+    if (error) {
+	  next(error);
+	} else {
+	  sys.puts(stdout);
+      res.send(200, js2xmlparser("person", data));
+	}
   });
 };
